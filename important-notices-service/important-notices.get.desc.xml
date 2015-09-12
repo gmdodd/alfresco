@@ -1,0 +1,6 @@
+<webscript>
+  <shortname>Important Notices Service</shortname>
+  <description>Get Important Notices</description>
+  <url>/important-notices/employee?searchtags={searchtags?}</url>
+  <authentication>user</authentication>
+</webscript>

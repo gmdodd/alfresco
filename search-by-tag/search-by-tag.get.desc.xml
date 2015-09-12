@@ -1,0 +1,6 @@
+<webscript>
+  <shortname>searchbytag</shortname>
+  <description>Find Documents By Tag</description>
+  <url>/search-by-tag/{site}?searchtags={searchtags?}</url>
+  <authentication>user</authentication>
+</webscript>

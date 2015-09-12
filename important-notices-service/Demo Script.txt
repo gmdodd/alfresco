@@ -1,0 +1,129 @@
+1.  Please join my meeting.
+https://global.gotomeeting.com/join/274263925
+
+2.  Use your microphone and speakers (VoIP) - a headset is recommended. Or, call in using your telephone.
+
+Dial +1 (224) 501-3412
+Access Code: 274-263-925
+Audio PIN: Shown after joining the meeting
+
+Meeting ID: 274-263-925
+
+GoToMeeting®
+Online Meetings Made Easy®
+
+
+Hello and welcome, Here I will present a series of short videos showing the current status of the Seeker Replacement project, specifically looking at the My Money Module. The new platform is using Angular JS for the UI and Spring MVC + Hibernate to provide the micro services that the UI Consumes.
+
+These videos will give you good look at the progress we have made so far, and what kinds of things to expect from the next generation of the TriNet Platform.
+
+Thanks and I hope you enjoy it. 
+
+
+
+-------
+TAX WITHHOLDING ID: 00001005473 7T1
+
+Lets begin with the Tax Withholding component of the My Money Module.
+
+Effective date for any changes is automatically one day in the future.
+
+Here the user can set up the withholding for both Federal and State tax
+
+The user can launch their current home state tax forms such as W-4
+
+Changing the Federal tax automatically increases the state, but not the other way around.
+
+[
+
+	
+	Show currently effective and future effective 
+]
+
+
+
+
+Let start with the Direct Deposit component of My Money.
+
+This component lets the user configure how their pay is distributed across different bank accounts. 
+
+It provides a graphical visualization of their last paycheck, and uses the donut to show how this amount was distributed across each of the accounts.
+
+Change Next Pay Check amount in case the user wants to create some scenarios based on different earnings etc. 
+
+
+
+[ DIRECT DEPOSIT 
+00001654387/7T1
+00001551360/7T1
+
+Can Delete Accounts - but they don't save to DB. 
+Can Add Accounts 
+Known Issues - Account Name doesn't save due db field required
+Effective date is always one day in the future.
+Calculation works 
+DONT SAVE 
+
+REIMBURSEMENTS
+
+Error Saving Different Accounts.
+
+]
+
+
+
+
+
+-----------
+
+Retirement plan
+
+This module helps the employee to calculate thier Retirement plan savings amount goals and view their current Retirement plan contributions. 
+
+The donut gives a graphical view of the current YTD contribution vs the goal amount that the user has set.
+
+we can make changes to this goal amount 
+
+see a warning if the amount goes over the maximum amount allowed by the state.
+
+We can also see the percentage amount issued per paycheck for 401k and Roth. 
+
+
+
+
+
+Hit Change the goal amount to show the Goal Contribution Amount
+
+
+
+
+[
+	7T1_00001654387
+
+	Change goal amount doesn't save
+	
+	Request Change -- External 401k provider site.
+	
+	Change History - new  non parity feature - we will be disabling this link
+
+]
+
+
+------------
+
+Earnings Statements
+
+Show each Earning Statements. 
+
+Show tool tips for Each section title.
+
+00001654384/7T1 
+
+
+
+
+
+
+
+
+
