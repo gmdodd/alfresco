@@ -1,5 +1,6 @@
+'use strict';
 const DEFAULT_MAX_RESULTS = 500;
-const SITES_SPACE_QNAME_PATH = "/app:company_home/st:sites/";
+const SITES_SPACE_QNAME_PATH = '/app:company_home/st:sites/';
 const PUBLISHED_TAG = 'PUBLISHED';
 
 /**
@@ -24,26 +25,43 @@ const PUBLISHED_TAG = 'PUBLISHED';
  * @param  {[type]} operand             [AND OR NOT]
  * @return {[query]}                     [return the query object]
  */
-function buildQuery (query, criteriaValueArray, type, operand){
-    for (criteriaIdx in criteriaArray) {
+function buildQuery (query, criteriaValueArray, type, operand) {
+    for (var criteriaIdx in criteriaArray) {
         query += ' ' + operand + ' ' + type + ':' + criteriaValueArray[criteriaIdx];
     }
     return query;
 }
 
 /**
- * 
+ * Adds a property to the query of the form
+ * @<propertytype>:
  * @param {[type]} query        [description]
- * @param {[type]} criteria     [description]
- * @param {[type]} alfrescoType [description]
+ * @param {[type]} propertyType [description]
  * @param {[type]} operand      [description]
  */
-function addAlfrescoSearchCriteria(query, criteria, alfrescoType, operand) {
-    if (criteria.length) {
-        // its and array
-    } else {
-
+function addPropertyQuery(query, propertyType, operand, propertyValue) {
+    if (query.length > 0) {
+        query += ' ' + operand + ' ';
     }
+
+    query += '@' + propertyType + ':' + propertyValue;
+    return query;
+}
+
+/**
+ * Add Standard Alfreco/Lucene query criteria
+ * @param {[type]} query        [description]
+ * @param {[type]} criteria     [description]
+ * @param {[type]} alfrescoType e.g. PATH, ASPECT, etc
+ * @param {[type]} operand      [description]
+ */
+function addAlfrescoSearchCriteria(query, alfrescoType, operand, criteriaValue) {
+    if (query.length > 0) {
+        query += ' ' + operand + ' ';
+    }
+
+    query += alfrescoType + ':' + criteriaValue;
+    return query;
 }
 
 /**
@@ -58,24 +76,25 @@ function addAlfrescoSearchCriteria(query, criteria, alfrescoType, operand) {
  *     product,
  *     vertical,
  *     acknowledgable,
- *     priority,
- *     
- *     
- * 
+ *     priority
  * @param {[type]} query          [description]
- * @param {[type]} criteria       [description]
  * @param {[type]} customProperty [description]
  * @param {[type]} operand        [description]
+ * @param {[type]} value          [description]
  */
-function addCustomSearchCriteria(query, criteria, customProperty, operand) {
-
+function addCustomPropertySearchCriteria(query, customDocumentProperty, operand, value) {
+    return addPropertyQuery(query, 'tn:' + customProperty, operand, value);
 }
 
-
+/**
+ * [addTagsQuery description]
+ * @param {[type]} query [description]
+ * @param {[type]} tags  [description]
+ */
 function addTagsQuery (query, tags) {
     if (tags) {
         tagsArray = tags.split(',');
-        for (tag in tagsArray) {
+        for (var tag in tagsArray) {
             if (tag && tag.length > 0) {
                 query += ' AND TAG:' + tagsArray[tag] + ' ';
             }
@@ -92,7 +111,7 @@ function addAspectsQuery (query, aspects) {
     var aspectsArray = [];
     if (aspects) {
         aspectsArray = aspects.split(',');
-        for (aspect in aspectsArray) {
+        for (var aspect in aspectsArray) {
             if (aspect && aspect.length > 0) {
                 query += ' AND ASPECT:' + aspectsArray[aspect] + ' ';
             }
@@ -177,28 +196,15 @@ function formatSearchData (data, prependStr) {
  * @return {[type]}         [description]
  */
 function getEmployeeData (rawData) {
-    var employeeData, 
-        searchRoles, 
-        searchLifeStatus;  
+    var employeeData;  
     employeeData = jsonUtils.toObject(rawData);
-
-
-
-
     try {
         if (employeeData) {
-
             // Set the employee data args
             employeeData.templateArgs = Object.keys(employeeData);
-            employeeData.getSearchTags = function () {
-                
-
-
-            }
         }
     } catch (ex) {
         return null;
     }
 
     return employeeData;
-}
